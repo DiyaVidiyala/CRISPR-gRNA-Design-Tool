@@ -1,182 +1,180 @@
+# 🧬 CRISPR gRNA Design Tool
 
-# CRISPR gRNA Design Tool
+A Python-based bioinformatics application developed to identify, evaluate, rank and visualize potential guide RNA (gRNA) candidates from an input DNA sequence using basic SpCas9 design principles.
 
-### A Python-Based Approach to Computational Guide RNA Design
+## Live Web Application
 
-## Project Overview
+[Launch CRISPR gRNA Design Tool](https://crispr-grna-design-tool-bmstt6zyagme6ckou8hhcc.streamlit.app/)
 
-The CRISPR gRNA Design Tool is a computational biology project developed using Python to identify, evaluate, and rank potential guide RNA (gRNA) candidates from a given DNA sequence.
+## 1. Project Objective
 
-The project integrates biological principles of CRISPR-Cas9 with computational sequence analysis to automate the preliminary identification of potential guide RNA candidates.
+The objective of this project is to develop a user-friendly computational tool that demonstrates the fundamental principles of CRISPR-Cas9 guide RNA design through Python programming and an interactive web interface.
 
-## Objectives
-
-- Process and validate DNA sequences.
-- Identify Protospacer Adjacent Motif (PAM) sites.
-- Generate 20-nucleotide guide candidates.
-- Calculate GC content and candidate scores.
-- Rank candidates based on predefined scoring criteria.
-
-## Biological Background
-
-CRISPR-Cas9 is a genome-editing technology that uses guide RNA to direct the Cas9 enzyme towards a specific DNA target.
-
-The commonly used SpCas9 enzyme recognizes an NGG PAM motif, where N represents any nucleotide. This project identifies NGG motifs and extracts the corresponding 20-nucleotide sequences preceding them.
-
-## Key Features
+## 2. Key Features
 
 - DNA sequence cleaning and validation
-- Automated NGG PAM identification
-- Guide RNA candidate generation
+- Identification of NGG PAM motifs
+- Generation of potential 20-nucleotide gRNA candidates
 - GC content calculation
 - Rule-based candidate scoring
-- Descending score-based ranking
-- Modular Python implementation
+- Candidate ranking
+- Interactive results table
+- Score and GC content visualization
+- Educational information on off-target effects
+- Web interface developed using Streamlit
 
-
-## Project Workflow
+## 3. Project Workflow
 
 ```text
 Input DNA Sequence
         |
-        v
-Sequence Cleaning
+Sequence Cleaning and Validation
         |
-        v
-Sequence Validation
-        |
-        v
 PAM Site Identification
         |
-        v
 gRNA Candidate Generation
         |
-        v
-GC Content and Scoring
+GC Content Calculation
         |
-        v
-Candidate Ranking
+Candidate Scoring
         |
-        v
-Display Results
+Ranking of Candidates
+        |
+Results and Visualization
 ```
 
-
-## Repository Structure
+## 4. Project Structure
 
 | File | Description |
 |---|---|
-| main.py | Executes the complete pipeline |
-| sequence_processing.py | DNA cleaning and validation |
-| pam_identification.py | PAM detection and candidate generation |
-| grna_scoring.py | GC content calculation and scoring |
-| candidate_ranking.py | Candidate sorting and ranking |
+| sequence_processing.py | Cleans and validates DNA sequences |
+| pam_identification.py | Identifies PAM sites and generates candidates |
+| grna_scoring.py | Calculates GC content and candidate scores |
+| candidate_ranking.py | Ranks candidates based on their scores |
+| off_target_analysis.py | Provides educational information on off-target effects |
+| main.py | Executes the core computational workflow |
+| app.py | Implements the interactive Streamlit interface |
+| requirements.txt | Lists required Python libraries |
+| README.md | Contains project documentation |
 
-## Scoring Methodology
+## 5. Scoring Methodology
 
 Each candidate is evaluated using a rule-based scoring system with a maximum score of 100.
 
-| Parameter | Condition | Score |
+| Criterion | Condition | Points |
 |---|---|---:|
-| Guide length | Exactly 20 nucleotides | 40 |
+| Guide length | 20 nucleotides | 40 |
 | GC content | 40–60% | 40 |
-| GC content | 30–70%, outside the preferred range | 20 |
-| GC content | Outside 30–70% | 0 |
-| Sequence validity | Contains only A, T, G and C | 20 |
+| GC content | 30–70%, outside preferred range | 20 |
+| Sequence validity | Valid DNA bases | 20 |
 
-Candidates are sorted in descending order of their total scores.
+Candidates are arranged in descending order of their total scores.
 
-The scoring system is heuristic and does not represent experimentally validated editing efficiency.
+These scores represent a simplified educational evaluation and are not experimentally validated predictions of CRISPR editing efficiency.
 
-## Technologies Used
+## 6. Results and Testing
 
-- Python 3
-- Google Colab
+The application was tested with different categories of input sequences.
+
+| Test Case | Observed Result |
+|---|---|
+| Valid DNA sequence | Successfully processed |
+| Invalid DNA sequence | Error message displayed |
+| Empty input | Warning message displayed |
+| Sequence without PAM motifs | No candidates reported |
+
+### Sample Analysis
+
+- Input sequence length: 83 nucleotides
+- PAM sites identified: 7
+- Potential gRNA candidates generated: 6
+- Maximum candidate score: 100
+
+The application displays ranked candidates along with their PAM motifs, positions, GC content and scores.
+
+## 7. Off-Target Effects
+
+Off-target effects occur when CRISPR-Cas9 interacts with unintended DNA regions.
+
+The application includes an educational module explaining the causes, consequences and importance of off-target effects.
+
+Genome-wide computational off-target prediction is not implemented in the current version.
+
+## 8. Technologies Used
+
+- Python
+- Streamlit
+- Pandas
 - GitHub
-- Computational sequence analysis
-- String manipulation and sorting algorithms
+- Streamlit Community Cloud
 
-## How to Run
+## 9. Running the Project Locally
 
-1. Download or clone this repository.
-2. Ensure Python 3 is installed.
-3. Open the project directory.
-4. Execute the following command:
+Install the required libraries:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the command-line version:
 
 ```bash
 python main.py
 ```
 
-No external Python libraries are required for the current implementation.
+Launch the web application:
 
-## Sample Results
+```bash
+streamlit run app.py
+```
 
-The current implementation was successfully tested using the DNA sequence included in main.py.
+## 10. Limitations
 
-| Parameter | Result |
+- The current implementation focuses on the SpCas9 NGG PAM motif.
+- Candidate identification is limited to the supplied DNA strand.
+- Candidate scoring is based on simplified rules.
+- Genome-wide off-target prediction is not implemented.
+- Candidate scores do not guarantee biological editing efficiency or specificity.
+
+## 11. Future Scope
+
+- Reverse-strand analysis
+- Reference genome integration
+- Computational off-target analysis
+- Advanced scoring models
+- Support for additional Cas proteins
+- Further improvements to visualization and reporting
+
+## 12. Team Members
+
+| Name | Enrollment Number |
 |---|---|
-| Input sequence length | 83 nucleotides |
-| Sequence validation | Valid |
-| PAM sites identified | 7 |
-| gRNA candidates generated | 6 |
-| Maximum candidate score | 100 |
+| Diya Vidiyala | SE25UCAB028 |
+| Manaswini Yerramilli | SE25UCAB018 |
 
-Six candidates were generated from seven PAM sites because one PAM site lacked sufficient upstream nucleotides.
+### Project Responsibilities
 
-## Current Limitations
-
-- Uses a predefined input DNA sequence.
-- Searches only the supplied DNA strand.
-- Uses a simplified rule-based scoring model.
-- Candidates with equal scores are not further differentiated.
-- Off-target effects are not currently evaluated.
-- Experimental validation has not been performed.
-
-## Future Scope
-
-- Interactive web application
-- Custom DNA sequence input
-- Reverse-complement strand analysis
-- Off-target analysis
-- Advanced scoring algorithms
-- Interactive results visualization
-- Exportable candidate reports
-
-## Team Members and Responsibilities
-
-### Diya Vidiyala
-
-**Roll Number:** SE25UCAB028
+**Diya Vidiyala**
 
 - DNA sequence processing
 - Sequence validation
-- PAM site identification
-- gRNA candidate generation
+- PAM identification
+- Candidate generation
 
-### Manaswini Yerramilli
-
-**Roll Number:** SE25UCAB018
+**Manaswini Yerramilli**
 
 - gRNA scoring
 - Candidate ranking
-- Off-target analysis (planned)
-- Results visualization (planned)
+- Results visualization
+- Off-target concept documentation
 
-Both team members will collaborate on web application development and deployment.
+**Joint Responsibilities**
 
-## Project Status
+- Module integration
+- Web application development
+- Testing and deployment
+- Project documentation
 
-- [x] DNA sequence processing
-- [x] PAM site identification
-- [x] gRNA candidate generation
-- [x] Candidate scoring
-- [x] Candidate ranking
-- [x] Initial pipeline execution and testing
-- [ ] Web application development
-- [ ] Off-target analysis
-- [ ] Results visualization
-- [ ] Web application deployment
+---
 
-## Academic Disclaimer
-
-This project is developed for academic and educational purposes. The generated candidates and scores require further computational and experimental validation before biological application.
+*Developed as part of an undergraduate Python course project, demonstrating the integration of programming and computational biology.*
