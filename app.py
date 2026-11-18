@@ -8,9 +8,9 @@ from candidate_ranking import rank_candidates
 from grna_scoring import gc_content
 from off_target_analysis import off_target_information
 
-st.set_page_config(page_title="CRISPR gRNA Design Tool", page_icon="🧬")
+st.set_page_config(page_title="CRISPR gRNA Design Tool")
 
-st.title("🧬 CRISPR gRNA Design Tool")
+st.title("CRISPR gRNA Design Tool")
 
 st.sidebar.title("About the Tool")
 st.sidebar.write("Python Course Project")
