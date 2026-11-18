@@ -1,8 +1,9 @@
+
 from grna_scoring import score_grna
 
 
 def rank_candidates(candidates):
-results = []
+    results = []
 
     for candidate in candidates:
         guide = candidate[0]

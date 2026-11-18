@@ -1,5 +1,6 @@
+
 def find_pam_sites(seq):
-pam_sites = []
+    pam_sites = []
 
     for i in range(len(seq) - 2):
         pam = seq[i:i+3]
@@ -11,7 +12,7 @@ pam_sites = []
 
 
 def generate_candidates(seq, pam_sites):
-candidates = []
+    candidates = []
 
     for position, pam in pam_sites:
         start = position - 20

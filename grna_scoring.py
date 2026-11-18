@@ -1,5 +1,6 @@
+
 def gc_content(seq):
-seq = seq.upper()
+    seq = seq.upper()
 
     gc_count = 0
 
@@ -11,7 +12,7 @@ seq = seq.upper()
 
 
 def score_grna(seq):
-seq = seq.upper()
+    seq = seq.upper()
     score = 0
 
     if len(seq) == 20:
