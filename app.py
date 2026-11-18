@@ -6,6 +6,7 @@ from sequence_processing import clean_sequence, validate_sequence
 from pam_identification import find_pam_sites, generate_candidates
 from candidate_ranking import rank_candidates
 from grna_scoring import gc_content
+from off_target_analysis import off_target_information
 
 st.set_page_config(page_title="CRISPR gRNA Design Tool", page_icon="🧬")
 
@@ -86,5 +87,14 @@ if st.button("Analyze Sequence"):
             st.write("GC content: Up to 40 points")
             st.write("Valid DNA bases: 20 points")
 
-st.caption("Scores are based on a simplified scoring method and do not guarantee editing efficiency. Off-target analysis is not currently included.")
+st.divider()
+
+with st.expander("Understanding Off-Target Effects"):
+
+    information = off_target_information()
+
+    for heading in information:
+        st.write(heading + ": " + information[heading])
+
+st.caption("This tool is intended for educational purposes. Candidate scores do not guarantee editing efficiency or specificity.")
 
