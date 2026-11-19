@@ -1,15 +1,15 @@
+from Bio.Seq import Seq
 
-def clean_sequence(seq):
-    seq = seq.strip().upper()
-    seq = seq.replace(" ", "")
-    return seq
+def clean_sequence(sequence):
+    sequence = str(Seq(sequence).upper())
+    sequence = sequence.replace(" ", "").replace("\n", "")
+    return sequence
 
-
-def validate_sequence(seq):
+def validate_sequence(sequence):
     invalid_bases = []
 
-    for i in range(len(seq)):
-        if seq[i] not in "ATGC":
-            invalid_bases.append((i, seq[i]))
+    for i, base in enumerate(sequence):
+        if base not in "ATGC":
+            invalid_bases.append((i, base))
 
     return invalid_bases
