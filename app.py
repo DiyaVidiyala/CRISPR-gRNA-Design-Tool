@@ -14,10 +14,18 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-html, body, [class*="css"] {
-    font-family: 'Nunito', sans-serif !important;
+.stApp,
+.stApp p,
+.stApp span,
+.stApp label,
+.stApp div,
+.stApp button,
+.stApp input,
+.stApp textarea,
+.stApp select {
+    font-family: 'Poppins', sans-serif !important;
 }
 
 .stApp {
@@ -36,11 +44,14 @@ html, body, [class*="css"] {
 
 h1 {
     color: #c4a0ff !important;
+    font-family: 'Poppins', sans-serif !important;
     font-weight: 700 !important;
 }
 
 h2, h3 {
     color: #d8c5f5 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 600 !important;
 }
 
 p, label {
@@ -57,7 +68,13 @@ p, label {
 
 [data-testid="stMetricValue"] {
     color: #c4a0ff !important;
+    font-family: 'Poppins', sans-serif !important;
     font-weight: 700 !important;
+}
+
+[data-testid="stMetricLabel"] {
+    color: #d0c8dc !important;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 .stButton > button {
@@ -66,6 +83,7 @@ p, label {
     border: none;
     border-radius: 7px;
     padding: 10px 24px;
+    font-family: 'Poppins', sans-serif !important;
     font-weight: 600;
 }
 
@@ -108,7 +126,8 @@ hr {
 """, unsafe_allow_html=True)
 
 st.markdown(
-    "<p style='color:#a78bfa; letter-spacing:2px; font-size:12px;'>"
+    "<p style='color:#a78bfa; letter-spacing:2px; font-size:12px; "
+    "font-family:Poppins, sans-serif !important;'>"
     "COMPUTATIONAL BIOLOGY / SEQUENCE ANALYSIS"
     "</p>",
     unsafe_allow_html=True
