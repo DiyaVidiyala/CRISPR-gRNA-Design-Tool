@@ -1,7 +1,5 @@
-from Bio.Seq import Seq
-
 def clean_sequence(sequence):
-    sequence = str(Seq(sequence).upper())
+    sequence = sequence.upper()
     sequence = sequence.replace(" ", "").replace("\n", "")
     return sequence
 
