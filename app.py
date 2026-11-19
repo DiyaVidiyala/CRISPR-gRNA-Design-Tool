@@ -16,18 +16,6 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-.stApp,
-.stApp p,
-.stApp span,
-.stApp label,
-.stApp div,
-.stApp button,
-.stApp input,
-.stApp textarea,
-.stApp select {
-    font-family: 'Poppins', sans-serif !important;
-}
-
 .stApp {
     background-color: #100e17;
     color: #e5e1ed;
@@ -42,16 +30,17 @@ st.markdown("""
     border-right: 1px solid #382b4d;
 }
 
+h1, h2, h3, p, label, button {
+    font-family: 'Poppins', sans-serif !important;
+}
+
 h1 {
     color: #c4a0ff !important;
-    font-family: 'Poppins', sans-serif !important;
     font-weight: 700 !important;
 }
 
 h2, h3 {
     color: #d8c5f5 !important;
-    font-family: 'Poppins', sans-serif !important;
-    font-weight: 600 !important;
 }
 
 p, label {
@@ -68,13 +57,7 @@ p, label {
 
 [data-testid="stMetricValue"] {
     color: #c4a0ff !important;
-    font-family: 'Poppins', sans-serif !important;
     font-weight: 700 !important;
-}
-
-[data-testid="stMetricLabel"] {
-    color: #d0c8dc !important;
-    font-family: 'Poppins', sans-serif !important;
 }
 
 .stButton > button {
@@ -85,10 +68,6 @@ p, label {
     padding: 10px 24px;
     font-family: 'Poppins', sans-serif !important;
     font-weight: 600;
-}
-
-.stButton > button p {
-    color: white !important;
 }
 
 .stButton > button:hover {
@@ -119,6 +98,17 @@ p, label {
     border-radius: 8px;
 }
 
+[data-testid="stExpander"] summary {
+    padding: 12px 16px !important;
+}
+
+[data-testid="stExpander"] summary p {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 15px !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+}
+
 hr {
     border-color: #403052;
 }
@@ -126,8 +116,7 @@ hr {
 """, unsafe_allow_html=True)
 
 st.markdown(
-    "<p style='color:#a78bfa; letter-spacing:2px; font-size:12px; "
-    "font-family:Poppins, sans-serif !important;'>"
+    "<p style='color:#a78bfa; letter-spacing:2px; font-size:12px;'>"
     "COMPUTATIONAL BIOLOGY / SEQUENCE ANALYSIS"
     "</p>",
     unsafe_allow_html=True
@@ -145,7 +134,6 @@ st.sidebar.caption("Python Course Project")
 st.sidebar.divider()
 
 st.sidebar.header("Design Parameters")
-
 st.sidebar.write("**Cas Protein:** SpCas9")
 st.sidebar.write("**PAM Motif:** NGG")
 st.sidebar.write("**Guide Length:** 20 nucleotides")
