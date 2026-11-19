@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 
@@ -15,6 +14,11 @@ st.set_page_config(
 
 st.markdown("""
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Nunito', sans-serif !important;
+}
 
 .stApp {
     background-color: #100e17;
@@ -32,8 +36,7 @@ st.markdown("""
 
 h1 {
     color: #c4a0ff !important;
-    font-weight: 700;
-    letter-spacing: -1px;
+    font-weight: 700 !important;
 }
 
 h2, h3 {
@@ -48,21 +51,21 @@ p, label {
     background-color: #1c1727;
     border: 1px solid #403052;
     border-top: 3px solid #a78bfa;
-    padding: 22px;
+    padding: 20px;
     border-radius: 8px;
 }
 
 [data-testid="stMetricValue"] {
     color: #c4a0ff !important;
-    font-family: monospace;
+    font-weight: 700 !important;
 }
 
 .stButton > button {
     background-color: #7952b3;
     color: white;
     border: none;
-    border-radius: 6px;
-    padding: 10px 25px;
+    border-radius: 7px;
+    padding: 10px 24px;
     font-weight: 600;
 }
 
@@ -72,15 +75,15 @@ p, label {
 
 .stButton > button:hover {
     background-color: #9365d4;
-    color: white;
 }
 
 .stTextArea textarea {
     background-color: #191522;
     color: #e0b3ff;
-    font-family: monospace;
+    font-family: monospace !important;
     font-size: 15px;
     border: 1px solid #49365e;
+    border-radius: 7px;
 }
 
 .stTextArea textarea::placeholder {
@@ -101,12 +104,13 @@ p, label {
 hr {
     border-color: #403052;
 }
-
 </style>
 """, unsafe_allow_html=True)
 
 st.markdown(
-    "<p style='color:#a78bfa; font-family:monospace; letter-spacing:2px; font-size:12px;'>COMPUTATIONAL BIOLOGY / SEQUENCE ANALYSIS</p>",
+    "<p style='color:#a78bfa; letter-spacing:2px; font-size:12px;'>"
+    "COMPUTATIONAL BIOLOGY / SEQUENCE ANALYSIS"
+    "</p>",
     unsafe_allow_html=True
 )
 
@@ -272,8 +276,7 @@ st.caption(
 )
 
 st.markdown(
-    "<p style='text-align:center; font-family:monospace; "
-    "font-size:11px; letter-spacing:2px;'>"
+    "<p style='text-align:center; font-size:11px; letter-spacing:2px;'>"
     "CRISPR / COMPUTATIONAL BIOLOGY / 2026"
     "</p>",
     unsafe_allow_html=True
