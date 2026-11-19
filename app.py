@@ -6,7 +6,7 @@ from sequence_processing import clean_sequence, validate_sequence
 from pam_identification import find_pam_sites, generate_candidates
 from candidate_ranking import rank_candidates
 from grna_scoring import gc_content
-from off_target_analysis import off_target_information
+from off_target_analysis import off_target_information, similarity_demo
 
 st.set_page_config(page_title="CRISPR gRNA Design Tool")
 
@@ -95,6 +95,18 @@ with st.expander("Understanding Off-Target Effects"):
 
     for heading in information:
         st.write(heading + ": " + information[heading])
+
+    st.subheader("Sequence Similarity Demonstration")
+
+    st.write("Original example: ABCDEF")
+
+    demo = pd.DataFrame(similarity_demo())
+
+    st.dataframe(demo, hide_index=True)
+
+    st.bar_chart(demo.set_index("Example")["Differences"])
+
+    st.caption("This fictional example demonstrates sequence mismatches, not biological off-target prediction.")
 
 st.caption("This tool is intended for educational purposes. Candidate scores do not guarantee editing efficiency or specificity.")
 
