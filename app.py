@@ -10,7 +10,6 @@ from off_target_analysis import off_target_information, similarity_demo
 
 st.set_page_config(
     page_title="CRISPR gRNA Design Tool",
-    page_icon="🧬",
     layout="wide"
 )
 
@@ -18,100 +17,134 @@ st.markdown("""
 <style>
 
 .stApp {
-    background: linear-gradient(135deg, #07111f, #102638);
-    color: #e2e8f0;
+    background-color: #100e17;
+    color: #e5e1ed;
+}
+
+[data-testid="stHeader"] {
+    background-color: #100e17;
+}
+
+[data-testid="stSidebar"] {
+    background-color: #191522;
+    border-right: 1px solid #382b4d;
 }
 
 h1 {
-    color: #5eead4 !important;
-    font-weight: 800 !important;
+    color: #c4a0ff !important;
+    font-weight: 700;
     letter-spacing: -1px;
 }
 
 h2, h3 {
-    color: #99f6e4 !important;
+    color: #d8c5f5 !important;
 }
 
 p, label {
-    color: #cbd5e1 !important;
-}
-
-[data-testid="stSidebar"] {
-    background: #0b1b2b;
-    border-right: 1px solid #234052;
+    color: #d0c8dc !important;
 }
 
 [data-testid="stMetric"] {
-    background: linear-gradient(145deg, #142d40, #102333);
-    border: 1px solid #28505c;
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background-color: #1c1727;
+    border: 1px solid #403052;
+    border-top: 3px solid #a78bfa;
+    padding: 22px;
+    border-radius: 8px;
 }
 
 [data-testid="stMetricValue"] {
-    color: #5eead4 !important;
-    font-weight: bold;
-}
-
-.stButton > button {
-    background: linear-gradient(90deg, #14b8a6, #0891b2);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 12px 30px;
-    font-weight: bold;
-    width: 100%;
-    transition: all 0.3s ease;
-}
-
-.stButton > button:hover {
-    background: #0d9488;
-    color: white;
-    box-shadow: 0 0 20px rgba(45, 212, 191, 0.4);
-    transform: translateY(-2px);
-}
-
-.stTextArea textarea {
-    background: #0b1b2b;
-    color: #99f6e4;
-    border: 1px solid #28505c;
-    border-radius: 12px;
+    color: #c4a0ff !important;
     font-family: monospace;
 }
 
+.stButton > button {
+    background-color: #7952b3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 25px;
+    font-weight: 600;
+}
+
+.stButton > button p {
+    color: white !important;
+}
+
+.stButton > button:hover {
+    background-color: #9365d4;
+    color: white;
+}
+
+.stTextArea textarea {
+    background-color: #191522;
+    color: #e0b3ff;
+    font-family: monospace;
+    font-size: 15px;
+    border: 1px solid #49365e;
+}
+
+.stTextArea textarea::placeholder {
+    color: #9488a7;
+}
+
 [data-testid="stDataFrame"] {
-    border: 1px solid #28505c;
-    border-radius: 12px;
-    overflow: hidden;
+    border: 1px solid #403052;
+    border-radius: 8px;
 }
 
 [data-testid="stExpander"] {
-    background: #102333;
-    border: 1px solid #28505c;
-    border-radius: 12px;
+    background-color: #191522;
+    border: 1px solid #403052;
+    border-radius: 8px;
+}
+
+hr {
+    border-color: #403052;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown(
+    "<p style='color:#a78bfa; font-family:monospace; letter-spacing:2px; font-size:12px;'>COMPUTATIONAL BIOLOGY / SEQUENCE ANALYSIS</p>",
+    unsafe_allow_html=True
+)
 
 st.title("CRISPR gRNA Design Tool")
 
-st.sidebar.title("About the Tool")
-st.sidebar.write("Python Course Project")
-st.sidebar.write("Cas Protein: SpCas9")
-st.sidebar.write("PAM Motif: NGG")
-st.sidebar.write("Guide Length: 20 nucleotides")
-st.sidebar.write("Preferred GC Content: 40-60%")
+st.write("DNA sequence analysis, candidate ranking and visualization.")
+
+st.divider()
+
+st.sidebar.title("CRISPR / 01")
+st.sidebar.caption("Python Course Project")
+
+st.sidebar.divider()
+
+st.sidebar.header("Design Parameters")
+
+st.sidebar.write("**Cas Protein:** SpCas9")
+st.sidebar.write("**PAM Motif:** NGG")
+st.sidebar.write("**Guide Length:** 20 nucleotides")
+st.sidebar.write("**Preferred GC Content:** 40-60%")
+
+st.sidebar.divider()
 
 st.sidebar.header("Developed By")
 st.sidebar.write("Diya Vidiyala")
 st.sidebar.write("Manaswini Yerramilli")
 
-st.write("This tool identifies and ranks potential gRNA candidates from a DNA sequence.")
+st.sidebar.divider()
 
-dna = st.text_area("Enter DNA sequence")
+st.sidebar.caption("Python • Pandas • Streamlit")
+
+st.subheader("01 / Sequence Input")
+
+dna = st.text_area(
+    "Enter DNA sequence",
+    height=150,
+    placeholder="Enter DNA sequence containing A, T, G and C..."
+)
 
 if st.button("Analyze Sequence"):
 
@@ -130,7 +163,9 @@ if st.button("Analyze Sequence"):
         candidates = generate_candidates(sequence, pam_sites)
         ranked = rank_candidates(candidates)
 
-        st.subheader("Sequence Analysis")
+        st.divider()
+
+        st.subheader("02 / Sequence Analysis")
 
         col1, col2, col3 = st.columns(3)
 
@@ -152,47 +187,94 @@ if st.button("Analyze Sequence"):
                     "gRNA": candidate["sequence"],
                     "PAM": candidate["pam"],
                     "PAM Position": candidate["pam_position"],
-                    "GC Content": round(gc_content(candidate["sequence"]), 2),
+                    "GC Content": round(
+                        gc_content(candidate["sequence"]), 2
+                    ),
                     "Score": candidate["score"]
                 })
 
             df = pd.DataFrame(results)
 
-            st.subheader("Ranked gRNA Candidates")
+            st.divider()
+
+            st.subheader("03 / Ranked gRNA Candidates")
+
             st.dataframe(df, hide_index=True)
+
             st.caption("PAM positions start from index 0.")
 
-            st.subheader("Candidate Scores")
-            st.bar_chart(df.set_index("Rank")["Score"])
+            st.divider()
 
-            st.subheader("GC Content Comparison")
-            st.bar_chart(df.set_index("Rank")["GC Content"])
+            st.subheader("04 / Candidate Visualization")
+
+            chart1, chart2 = st.columns(2)
+
+            with chart1:
+                st.markdown("#### Candidate Scores")
+                st.bar_chart(
+                    df.set_index("Rank")["Score"],
+                    color="#a78bfa"
+                )
+
+            with chart2:
+                st.markdown("#### GC Content Comparison")
+                st.bar_chart(
+                    df.set_index("Rank")["GC Content"],
+                    color="#c084fc"
+                )
 
             st.subheader("Scoring Criteria")
-            st.write("Guide length: 40 points")
-            st.write("GC content: Up to 40 points")
-            st.write("Valid DNA bases: 20 points")
+
+            score1, score2, score3 = st.columns(3)
+
+            score1.metric("Guide Length", "40 pts")
+            score2.metric("Maximum GC Score", "40 pts")
+            score3.metric("Valid DNA Bases", "20 pts")
+
+            st.caption("Maximum possible candidate score: 100")
 
 st.divider()
+
+st.subheader("05 / Off-Target Effects")
 
 with st.expander("Understanding Off-Target Effects"):
 
     information = off_target_information()
 
     for heading in information:
-        st.write(heading + ": " + information[heading])
+        st.markdown(
+            "**" + heading + ":** " + information[heading]
+        )
 
     st.subheader("Sequence Similarity Demonstration")
 
-    st.write("Original example: ABCDEF")
+    st.code("ABCDEF", language=None)
 
     demo = pd.DataFrame(similarity_demo())
 
     st.dataframe(demo, hide_index=True)
 
-    st.bar_chart(demo.set_index("Example")["Differences"])
+    st.bar_chart(
+        demo.set_index("Example")["Differences"],
+        color="#db8ab8"
+    )
 
-    st.caption("This fictional example demonstrates sequence mismatches, not biological off-target prediction.")
+    st.caption(
+        "This fictional example demonstrates sequence mismatches, "
+        "not biological off-target prediction."
+    )
 
-st.caption("This tool is intended for educational purposes. Candidate scores do not guarantee editing efficiency or specificity.")
+st.divider()
 
+st.caption(
+    "This tool is intended for educational purposes. "
+    "Candidate scores do not guarantee editing efficiency or specificity."
+)
+
+st.markdown(
+    "<p style='text-align:center; font-family:monospace; "
+    "font-size:11px; letter-spacing:2px;'>"
+    "CRISPR / COMPUTATIONAL BIOLOGY / 2026"
+    "</p>",
+    unsafe_allow_html=True
+)
