@@ -8,7 +8,93 @@ from candidate_ranking import rank_candidates
 from grna_scoring import gc_content
 from off_target_analysis import off_target_information, similarity_demo
 
-st.set_page_config(page_title="CRISPR gRNA Design Tool")
+st.set_page_config(
+    page_title="CRISPR gRNA Design Tool",
+    page_icon="🧬",
+    layout="wide"
+)
+
+st.markdown("""
+<style>
+
+.stApp {
+    background: linear-gradient(135deg, #07111f, #102638);
+    color: #e2e8f0;
+}
+
+h1 {
+    color: #5eead4 !important;
+    font-weight: 800 !important;
+    letter-spacing: -1px;
+}
+
+h2, h3 {
+    color: #99f6e4 !important;
+}
+
+p, label {
+    color: #cbd5e1 !important;
+}
+
+[data-testid="stSidebar"] {
+    background: #0b1b2b;
+    border-right: 1px solid #234052;
+}
+
+[data-testid="stMetric"] {
+    background: linear-gradient(145deg, #142d40, #102333);
+    border: 1px solid #28505c;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+[data-testid="stMetricValue"] {
+    color: #5eead4 !important;
+    font-weight: bold;
+}
+
+.stButton > button {
+    background: linear-gradient(90deg, #14b8a6, #0891b2);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 30px;
+    font-weight: bold;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.stButton > button:hover {
+    background: #0d9488;
+    color: white;
+    box-shadow: 0 0 20px rgba(45, 212, 191, 0.4);
+    transform: translateY(-2px);
+}
+
+.stTextArea textarea {
+    background: #0b1b2b;
+    color: #99f6e4;
+    border: 1px solid #28505c;
+    border-radius: 12px;
+    font-family: monospace;
+}
+
+[data-testid="stDataFrame"] {
+    border: 1px solid #28505c;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+[data-testid="stExpander"] {
+    background: #102333;
+    border: 1px solid #28505c;
+    border-radius: 12px;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
 
 st.title("CRISPR gRNA Design Tool")
 
